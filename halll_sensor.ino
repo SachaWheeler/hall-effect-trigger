@@ -8,11 +8,16 @@ bool trigger = true;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
+  //Serial.setTimeout(1);
   pinMode(hallSensorPin, INPUT);
+
+  while (!Serial.available());
+  //Serial.print("ready");
 }
 
 void loop() {
+  
   // put your main code here, to run repeatedly:
   time_now = millis();
 
@@ -22,7 +27,8 @@ void loop() {
 
   if (trigger == true && hallSensorValue == 0) {
     // send a serial message and only do this once per second
-    Serial.println("trigger");
+    //Serial.println("trigger");
+    Serial.println(1);
 
     trigger_time = time_now;
     trigger = false;
