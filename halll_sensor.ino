@@ -24,7 +24,7 @@ void loop() {
     // send a serial message and only do this once per second
     Serial.println("trigger");
 
-    trigger_time = millis();
+    trigger_time = time_now;
     trigger = false;
   }
   if (trigger == false && time_now > trigger_time + period) {
