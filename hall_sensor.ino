@@ -7,34 +7,18 @@ unsigned long trigger_time = 0;
 bool trigger = true;
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
-  //Serial.setTimeout(1);
   pinMode(hallSensorPin, INPUT);
 
   while (!Serial.available())
     ;
-  //Serial.print("ready");
 }
 
 void loop() {
   time_now = millis();
-  /* // this was for testing serial communication
-  if (Serial.available()) {
-    Serial.println(1);
-  }
-  delay(1000);
-  */
-
-  /* */
-
   hallSensorValue = digitalRead(hallSensorPin);
-  //Serial.print("hallSensorValue: ");
-  //Serial.println(hallSensorValue);
 
   if (trigger == true && hallSensorValue == 0) {
-    // send a serial message and only do this once per second
-    //Serial.println("trigger");
     Serial.println(1);
 
     trigger_time = time_now;
@@ -44,5 +28,4 @@ void loop() {
     // turn it on again
     trigger = true;
   }
-  /* */
 }
